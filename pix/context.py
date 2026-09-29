@@ -238,7 +238,8 @@ class Context:
 
     @property
     def spell_charges_judgment(self) -> int:
-        return int(self.readValueBarCell(48, 2, 2) + 0.5)
+        """Grayscale charge count (0–2); 0 also includes missing data."""
+        return int(self.readNumberCell(48) + 0.5)
 
     @property
     def item_cd_lights_potential(self) -> bool:

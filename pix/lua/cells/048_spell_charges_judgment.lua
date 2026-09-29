@@ -1,4 +1,5 @@
--- 充能数直接送入数值条；内容宽度与最大充能量程独立。
+-- 单格灰度字节直接表示充能数；本技能为 0–2 次，缺失或零充能为黑色。
+-- 秘密充能仅交给 string.format 和 SetText，不调用受执行环境限制的 FormatNumber。
 local addonName, addonTable    = ...
 
 -- lua 内置方法
@@ -11,19 +12,19 @@ local CreateFrame = CreateFrame
 local After = C_Timer.After
 local IsSpellInSpellBook = C_SpellBook.IsSpellInSpellBook
 local GetSpellCharges = C_Spell.GetSpellCharges
+local issecretvalue = issecretvalue
+local GameFontNormal = GameFontNormal
 
 -- 项目引用
-local COLOR = addonTable.COLOR
 local UIInitFuncs = addonTable.UIInitFuncs
-local ValueBar = addonTable.ValueBar
+local CellBackplate = addonTable.CellBackplate
+local SIZE = addonTable.SIZE
 
 -- 本地配置
 local X = 48
-local WIDTH = 2
-local MAX_CHARGES = 2
 local SPELL_IDS = { 20271 }
 local eventFrame = CreateFrame("Frame")
-local bar
+local text
 
 local selectedSpellID
 local function SelectSpell()
@@ -37,22 +38,34 @@ local function SelectSpell()
 end
 
 local function Refresh()
-    if not bar then return end
-    local color = COLOR.WHITE
-    bar.StatusBar:SetColorFill(color:GetRGBA())
+    if not text then return end
     if selectedSpellID then
         local chargeInfo = GetSpellCharges(selectedSpellID)
         if chargeInfo then
-            bar:setValue(chargeInfo.currentCharges)
+            local value = chargeInfo.currentCharges
+            if not issecretvalue(value) and value == nil then
+                value = 0
+            end
+            text:SetText(string.format("|cFF%02X%02X%02X█|r", value, value, value))
             return
         end
     end
-    bar:setValue(0)
+    text:SetText("|cFF000000█|r")
 end
 
 local function Initialize()
-    bar = ValueBar:New(X, WIDTH)
-    bar:setMinMaxValues(0, MAX_CHARGES)
+    local backing = CellBackplate:New({ x = X })
+    backing.Frame:SetClipsChildren(true)
+    local fontPath = GameFontNormal:GetFont()
+    text = backing.Frame:CreateFontString(nil, "ARTWORK")
+    text:SetFont(fontPath, SIZE.CELL_FONT_SIZE, "")
+    text:SetPoint("CENTER", backing.Frame, "CENTER")
+    text:SetJustifyH("CENTER")
+    text:SetJustifyV("MIDDLE")
+    text:SetShadowOffset(0, 0)
+    text:SetShadowColor(0, 0, 0, 0)
+    text:SetTextColor(1, 1, 1, 1)
+    text:SetFixedColor(false)
     SelectSpell()
     Refresh()
 end
