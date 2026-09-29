@@ -299,16 +299,16 @@ class Context:
 
     @property
     def mouseover_in_melee_range(self) -> bool:
-        return self.readBooleanCell(71)
+        return self.readBooleanCell(49)
 
     @property
     def burst_potion_enabled(self) -> bool:
-        return self.readBooleanCell(72)
+        return self.readBooleanCell(50)
 
     @property
     def player_melee_enemies_count(self) -> int:
         """Observable living enemies within Hammer of Justice range (0–40)."""
-        return int(self.matrix.getCell(73).ratio * 40 + 0.5)
+        return int(self.matrix.getCell(68).ratio * 40 + 0.5)
 
     @property
     def player_cast_icon(self) -> str | None:

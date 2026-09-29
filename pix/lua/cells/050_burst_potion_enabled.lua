@@ -8,7 +8,7 @@ local Config = addonTable.Config
 local ConfigRows = addonTable.ConfigRows
 local UIInitFuncs = addonTable.UIInitFuncs
 
-local X = 72
+local X = 50
 local config = Config("burst_potion_enabled")
 local cell
 config:set_default(false)

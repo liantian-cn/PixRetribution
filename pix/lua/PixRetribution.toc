@@ -64,6 +64,8 @@ cells\045_spell_cd_execution_sentence.lua
 cells\046_spell_cd_wake_of_ashes.lua
 cells\047_spell_cd_blade_of_justice.lua
 cells\048_spell_charges_judgment.lua
+cells\049_mouseover_in_melee_range.lua
+cells\050_burst_potion_enabled.lua
 cells\051_spell_cd_divine_toll.lua
 cells\052_spell_cd_lay_on_hands.lua
 cells\053_spell_cd_divine_shield.lua
@@ -81,9 +83,7 @@ cells\064_player_has_dispellable_poison_or_disease.lua
 cells\065_spell_cd_cleanse_toxins.lua
 cells\066_auto_cleanse_enabled.lua
 cells\067_auto_trinket_enabled.lua
-cells\071_mouseover_in_melee_range.lua
-cells\072_burst_potion_enabled.lua
-cells\073_player_melee_enemies_count.lua
+cells\068_player_melee_enemies_count.lua
 cells\I01_player_cast_icon.lua
 cells\I02_assisted_combat_icon.lua
 cells\I03_target_cast_icon.lua

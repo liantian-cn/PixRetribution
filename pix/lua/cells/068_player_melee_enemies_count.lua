@@ -17,7 +17,7 @@ local UnitAffectingCombat = UnitAffectingCombat
 local Cell = addonTable.Cell
 local UIInitFuncs = addonTable.UIInitFuncs
 
-local X = 73
+local X = 68
 local SPELL_ID = 853
 local COMBAT_ONLY = false
 local NAMEPLATE_LIMIT = 40
