@@ -1,6 +1,6 @@
 ## Interface: 120100
 ## Title: 圣骑士-惩戒
-## Version: 12.1.0.68209
+## Version: 12.1.0.69933
 ## Category: Tools
 ## SavedVariables: PixRetributionDB
 ## LoadSavedVariablesFirst: 1
